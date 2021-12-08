@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:29:43 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/08 12:35:13 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/08 13:16:07 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,24 @@
 
 # define KEY_ESC 65307
 
-extern void	*g_mlx;
-extern void	*g_win;
-extern void	*g_img;
-extern char	*g_arr;
+typedef struct s_state
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*arr;
+	double	zoom;
+	double	mousex;
+	double	mousey;
+	size_t	imax;
+}	t_state;
 
-void	draw(int x, int y, int color);
+void	draw(t_state *s, int x, int y, int color);
 
-void	draw_all(int (*drawer)(int, int));
+void	draw_all(t_state *s, int (*drawer)(t_state *, double, double));
 
-int		mandelbrot(int x, int y);
+void	mandelbrot_init(t_state *s);
+
+int		mandelbrot(t_state *s, double x, double y);
 
 #endif

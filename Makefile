@@ -3,6 +3,7 @@ NAME = fractol
 INPUT = \
 	main.c \
 	utils.c \
+	mandelbrot.c \
 
 OUTPUT = ${INPUT:.c=.o}
 
