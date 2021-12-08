@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:29:43 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/07 18:10:17 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/08 12:35:13 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 # define KEY_ESC 65307
 
-void	*g_mlx;
-void	*g_win;
-void	*g_img;
-char	*g_arr;
+extern void	*g_mlx;
+extern void	*g_win;
+extern void	*g_img;
+extern char	*g_arr;
 
 void	draw(int x, int y, int color);
 
