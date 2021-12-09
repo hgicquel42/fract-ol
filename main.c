@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:28:16 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/09 12:08:45 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:22:55 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,13 @@ int	ft_strcmp(char *a, char *b)
 
 void	init(t_state *s)
 {
+	s->zoom = 200;
 	if (s->type == 1)
 		mandelbrot_init(s);
 	if (s->type == 2)
 		julia_init(s);
+	if (s->type == 3)
+		burningship_init(s);
 }
 
 int	print_help(void)
@@ -50,6 +53,8 @@ int	main(int argc, char **argv)
 		state.type = 1;
 	if (!ft_strcmp(argv[1], "julia"))
 		state.type = 2;
+	if (!ft_strcmp(argv[1], "burningship"))
+		state.type = 3;
 	if (!state.type)
 		return (print_help());
 	init(&state);

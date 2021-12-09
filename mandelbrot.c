@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:46:47 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/09 12:01:05 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:12:51 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	mandelbrot_init(t_state *s)
 {
-	s->zoom = 300;
-	s->mousex = -3.5;
-	s->mousey = -1.5;
+	s->mousex = -5;
+	s->mousey = -2.5;
 }
 
 int	mandelbrot_calc(t_state *s, double x, double y)

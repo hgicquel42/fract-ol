@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:29:43 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/09 12:06:33 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:18:32 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <unistd.h>
+# include <math.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -55,13 +56,17 @@ void	draw(t_state *s, int x, int y, int color);
 
 void	draw_all(t_state *s, int (*drawer)(t_state *, double, double));
 
+void	julia_init(t_state *s);
+
+int		julia_calc(t_state *s, double x, double y);
+
 void	mandelbrot_init(t_state *s);
 
 int		mandelbrot_calc(t_state *s, double x, double y);
 
-void	julia_init(t_state *s);
+void	burningship_init(t_state *s);
 
-int		julia_calc(t_state *s, double x, double y);
+int		burningship_calc(t_state *s, double x, double y);
 
 void	zoom(t_state *s, double x, double y);
 

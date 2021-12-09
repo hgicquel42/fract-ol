@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 12:04:01 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/09 12:04:46 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:19:41 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	on_draw(t_state *s)
 		draw_all(s, mandelbrot_calc);
 	if (s->type == 2)
 		draw_all(s, julia_calc);
+	if (s->type == 3)
+		draw_all(s, burningship_calc);
 	mlx_put_image_to_window(s->mlx, s->win, s->img, 0, 0);
 	return (0);
 }

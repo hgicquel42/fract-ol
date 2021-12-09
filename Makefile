@@ -3,10 +3,11 @@ NAME = fractol
 INPUT = \
 	main.c \
 	utils.c \
-	mandelbrot.c \
-	julia.c \
 	hooks.c \
 	zoom.c \
+	julia.c \
+	mandelbrot.c \
+	burningship.c \
 
 OUTPUT = ${INPUT:.c=.o}
 
