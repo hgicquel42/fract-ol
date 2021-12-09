@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:46:47 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/08 13:16:37 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:39:47 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ typedef struct s_cnum
 void	mandelbrot_init(t_state *s)
 {
 	s->zoom = 300;
-	s->mousex = -2.05;
-	s->mousey = -1.3;
-	s->imax = 50;
+	s->mousex = -3.5;
+	s->mousey = -1.5;
 }
 
 int	mandelbrot(t_state *s, double x, double y)
@@ -38,15 +37,15 @@ int	mandelbrot(t_state *s, double x, double y)
 	c.i = y / s->zoom + s->mousey;
 	z.i = 0;
 	z.r = 0;
-	while ((z.r * z.r) + (z.i * z.i) < 4 && i < s->imax)
+	while ((z.r * z.r) + (z.i * z.i) < 4 && i < 100)
 	{
 		tmp = z.r;
 		z.r = (z.r * z.r) - (z.i * z.i) + c.r;
 		z.i = 2 * z.i * tmp + c.i;
 		i++;
 	}
-	if (i == s->imax)
+	if (i == 100)
 		return (0x000000);
 	else
-		return (265 * i);
+		return (colorize(i));
 }

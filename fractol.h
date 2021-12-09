@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:29:43 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/08 13:16:07 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:20:38 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <time.h>
 # include <stdlib.h>
+# include <stdbool.h>
+# include <unistd.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -32,7 +34,6 @@ typedef struct s_state
 	double	zoom;
 	double	mousex;
 	double	mousey;
-	size_t	imax;
 }	t_state;
 
 void	draw(t_state *s, int x, int y, int color);
@@ -42,5 +43,7 @@ void	draw_all(t_state *s, int (*drawer)(t_state *, double, double));
 void	mandelbrot_init(t_state *s);
 
 int		mandelbrot(t_state *s, double x, double y);
+
+int		colorize(double i);
 
 #endif

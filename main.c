@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:28:16 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/08 13:17:36 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:32:35 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,33 @@ int	on_draw(t_state *s)
 
 void	zoom(t_state *s, double x, double y)
 {
-	s->mousex = (x / s->zoom + s->mousex) - (x / (s->zoom * 1.3));
-	s->mousey = (y / s->zoom + s->mousey) - (y / (s->zoom * 1.3));
-	s->zoom *= 1.3;
-	s->imax++;
+	double zoom = s->zoom;
+	s->zoom *= 2;
+	s->mousex = (x / zoom + s->mousex) - (x / (s->zoom));
+	s->mousey = (y / zoom + s->mousey) - (y / (s->zoom));
 }
 
 void	unzoom(t_state *s, double x, double y)
 {
-	s->mousex = (x / s->zoom + s->mousex) - (x / (s->zoom / 1.3));
-	s->mousey = (y / s->zoom + s->mousey) - (y / (s->zoom / 1.3));
-	s->zoom /= 1.3;
-	s->imax--;
+	double zoom = s->zoom;
+	s->zoom /= 2;
+	s->mousex = (x / zoom + s->mousex) - (x / (s->zoom));
+	s->mousey = (y / zoom + s->mousey) - (y / (s->zoom));
 }
 
 int	on_mouse(int code, int x, int y, t_state *s)
 {
-	(void)x;
-	(void)y;
+	static bool	lock = false;
+
+	if (lock)
+		return (0);
+	lock = true;
 	if (code == 4 || code == 1)
 		zoom(s, x, y);
 	if (code == 5 || code == 2)
 		unzoom(s, x, y);
 	on_draw(s);
+	lock = false;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:21:10 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/08 13:09:49 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:20:55 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,9 @@ static void	ft_memcpy(char *a, char *b, size_t l)
 		a[i] = b[i];
 }
 
-void	ft_putpxl(char *p, int color)
-{
-	ft_memcpy(p, (char *)&color, sizeof(int));
-}
-
 void	draw(t_state *s, int x, int y, int color)
 {
-	ft_putpxl(s->arr + (y * 4 * WIDTH) + (x * 4), color);
+	ft_memcpy(s->arr + (y * 4 * WIDTH) + (x * 4), (char *)&color, sizeof(int));
 }
 
 void	draw_all(t_state *s, int (*drawer)(t_state *, double, double))
@@ -47,4 +42,11 @@ void	draw_all(t_state *s, int (*drawer)(t_state *, double, double))
 		}
 		x++;
 	}
+}
+
+int	colorize(double i)
+{
+	double	x = i / 100;
+	int		y = x * 0xFFFF;
+	return 0xFF << 16 | y;
 }
