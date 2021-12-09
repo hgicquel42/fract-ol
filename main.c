@@ -6,79 +6,57 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:28:16 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/09 11:32:35 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:08:45 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	on_close(t_state *s)
+int	ft_strcmp(char *a, char *b)
 {
-	mlx_destroy_image(s->mlx, s->img);
-	mlx_destroy_window(s->mlx, s->win);
-	mlx_loop_end(s->mlx);
-	return (0);
+	while (*a && *a == *b)
+	{
+		a++;
+		b++;
+	}
+	return (*a - *b);
 }
 
-int	on_key(int code, t_state *s)
+void	init(t_state *s)
 {
-	printf("%d\n", code);
-	if (code == KEY_ESC)
-		return (on_close(s));
-	return (0);
+	if (s->type == 1)
+		mandelbrot_init(s);
+	if (s->type == 2)
+		julia_init(s);
 }
 
-int	on_draw(t_state *s)
+int	print_help(void)
 {
-	draw_all(s, mandelbrot);
-	mlx_put_image_to_window(s->mlx, s->win, s->img, 0, 0);
-	return (0);
+	printf("julia, mandelbrot\n");
+	return (1);
 }
 
-void	zoom(t_state *s, double x, double y)
-{
-	double zoom = s->zoom;
-	s->zoom *= 2;
-	s->mousex = (x / zoom + s->mousex) - (x / (s->zoom));
-	s->mousey = (y / zoom + s->mousey) - (y / (s->zoom));
-}
-
-void	unzoom(t_state *s, double x, double y)
-{
-	double zoom = s->zoom;
-	s->zoom /= 2;
-	s->mousex = (x / zoom + s->mousex) - (x / (s->zoom));
-	s->mousey = (y / zoom + s->mousey) - (y / (s->zoom));
-}
-
-int	on_mouse(int code, int x, int y, t_state *s)
-{
-	static bool	lock = false;
-
-	if (lock)
-		return (0);
-	lock = true;
-	if (code == 4 || code == 1)
-		zoom(s, x, y);
-	if (code == 5 || code == 2)
-		unzoom(s, x, y);
-	on_draw(s);
-	lock = false;
-	return (0);
-}
-
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int		depth;
 	int		size;
 	int		endian;
 	t_state	state;
 
+	if (argc < 2)
+		return (print_help());
+	state.type = 0;
+	if (!ft_strcmp(argv[1], "mandelbrot"))
+		state.type = 1;
+	if (!ft_strcmp(argv[1], "julia"))
+		state.type = 2;
+	if (!state.type)
+		return (print_help());
+	init(&state);
 	state.mlx = mlx_init();
 	state.win = mlx_new_window(state.mlx, WIDTH, HEIGHT, "Hello world!");
 	state.img = mlx_new_image(state.mlx, WIDTH, HEIGHT);
 	state.arr = mlx_get_data_addr(state.img, &depth, &size, &endian);
-	mandelbrot_init(&state);
 	mlx_hook(state.win, 17, 0, on_close, &state);
 	mlx_key_hook(state.win, on_key, &state);
 	mlx_mouse_hook(state.win, on_mouse, &state);

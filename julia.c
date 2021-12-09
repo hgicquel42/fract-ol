@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 12:46:47 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/09 12:01:05 by hgicquel         ###   ########.fr       */
+/*   Created: 2021/12/09 11:50:44 by hgicquel          #+#    #+#             */
+/*   Updated: 2021/12/09 12:08:20 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	mandelbrot_init(t_state *s)
+void	julia_init(t_state *s)
 {
 	s->zoom = 300;
-	s->mousex = -3.5;
+	s->mousex = -3;
 	s->mousey = -1.5;
 }
 
-int	mandelbrot_calc(t_state *s, double x, double y)
+int	julia_calc(t_state *s, double x, double y)
 {
 	size_t	i;
 	t_cnum	c;
@@ -27,10 +27,10 @@ int	mandelbrot_calc(t_state *s, double x, double y)
 	double	tmp;
 
 	i = 0;
-	c.r = x / s->zoom + s->mousex;
-	c.i = y / s->zoom + s->mousey;
-	z.i = 0;
-	z.r = 0;
+	c.r = 0.285;
+	c.i = 0.01;
+	z.r = x / s->zoom + s->mousex;
+	z.i = y / s->zoom + s->mousey;
 	while ((z.r * z.r) + (z.i * z.i) < 4 && i < 100)
 	{
 		tmp = z.r;

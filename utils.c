@@ -6,13 +6,13 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 16:21:10 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/09 11:20:55 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 12:06:23 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	ft_memcpy(char *a, char *b, size_t l)
+void	ft_memcpy(char *a, char *b, size_t l)
 {
 	size_t	i;
 
@@ -46,7 +46,10 @@ void	draw_all(t_state *s, int (*drawer)(t_state *, double, double))
 
 int	colorize(double i)
 {
-	double	x = i / 100;
-	int		y = x * 0xFFFF;
-	return 0xFF << 16 | y;
+	double	x;
+	int		y;
+
+	x = i / 100;
+	y = x * 0xFFFF;
+	return (0xFF << 16 | y);
 }

@@ -4,6 +4,9 @@ INPUT = \
 	main.c \
 	utils.c \
 	mandelbrot.c \
+	julia.c \
+	hooks.c \
+	zoom.c \
 
 OUTPUT = ${INPUT:.c=.o}
 
