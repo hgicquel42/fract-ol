@@ -6,7 +6,7 @@
 /*   By: hgicquel <hgicquel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 14:29:43 by hgicquel          #+#    #+#             */
-/*   Updated: 2021/12/09 12:18:32 by hgicquel         ###   ########.fr       */
+/*   Updated: 2021/12/09 17:34:22 by hgicquel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,15 @@
 # define HEIGHT 1080
 
 # define KEY_ESC 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_UP 65362
+# define KEY_DOWN 65364
 
 typedef struct s_state
 {
 	int		type;
+	int		type2;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -58,7 +63,9 @@ void	draw_all(t_state *s, int (*drawer)(t_state *, double, double));
 
 void	julia_init(t_state *s);
 
-int		julia_calc(t_state *s, double x, double y);
+int		julia_calc1(t_state *s, double x, double y);
+
+int		julia_calc2(t_state *s, double x, double y);
 
 void	mandelbrot_init(t_state *s);
 
